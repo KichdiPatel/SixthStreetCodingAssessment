@@ -1,5 +1,4 @@
 import requests
-import json
 import pandas as pd
 
 
@@ -14,7 +13,7 @@ class AlphaVantage:
         """
         Internal helper to fetch TIME_SERIES_DAILY data from Alpha Vantage.
         """
-        api = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}.TRT&outputsize={"full"}&apikey={self.api_key}"
+        api = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&outputsize={"full"}&apikey={self.api_key}"
         try: 
             response = requests.get(api)
             response.raise_for_status()
@@ -116,17 +115,19 @@ class AlphaVantage:
 
         return df.head(n)["high"].max()
 
-if __name__ == "__main__":
-    av = AlphaVantage("YOUR_API_KEY")
-    # data = av._fetch_daily_series("AAPL")
-    data1 = av.lookup("AAPL", "2025-03-26")
-    print(data1)
-    data2 = av.min("AAPL", 5)
-    print(data2)
-    data3 = av.max("AAPL", 5)
-    print(data3)
-    # print()
-    # print()
-    # print(av.lookup("AAPL", "2021-01-04"))
-    # print(av.min("AAPL", 5))
-    # print(av.max("AAPL",
+# if __name__ == "__main__":
+#     av = AlphaVantage("demo")
+#     # print(av.lookup("AAPL", "2025-03-25"))
+#     # df = av._fetch_daily_series("MSFT")
+#     # print("Oldest date available:", df["date"].min())
+#     # print("Newest date available:", df["date"].max())
+
+
+# #     data1 = av.lookup("AAPL", "2025-03-26")
+#     print(av.lookup("MSFT", "2025-03-25"))
+#     print(av.min("MSFT", 5))
+#     print(av.max("MSFT", 5))
+#     data2 = av.min("AAPL", 5)
+#     print(data2)
+#     data3 = av.max("AAPL", 5)
+#     print(data3)
