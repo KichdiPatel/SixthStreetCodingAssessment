@@ -20,16 +20,16 @@ pip install -e .
 
 ## Discussion
 
-# What compromises did you make due to time constraints?
+### What compromises did you make due to time constraints?
 
-# How would you approach versioning of this library?
+### How would you approach versioning of this library?
 
-# How would we go about publishing this library?
+### How would we go about publishing this library?
 
-# How would you design this if it was going to be a service rather than a library?
+### How would you design this if it was going to be a service rather than a library?
 
-# Please include any other comments about your implementation.
+### Please include any other comments about your implementation.
 
-# How much time did you spend on this exercise?
+### How much time did you spend on this exercise?
 
-# Please include any general feedback you have about the exercise.
+### Please include any general feedback you have about the exercise.
