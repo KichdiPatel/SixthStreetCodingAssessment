@@ -34,7 +34,7 @@ To publish this library, we could use PyPi
 
 ### How would you design this if it was going to be a service rather than a library?
 
-If this were a service, I would expose it as a REST API using FastAPI or Flask. There would need to be authentication via some API key and it would be have the three endpoints: lookup, min, max.
+If this were a service, I would expose it as a REST API using FastAPI or Flask. There would need to be authentication via some API key and it would have the three endpoints: lookup, min, max.
 
 ### Please include any other comments about your implementation.
 
