@@ -114,20 +114,3 @@ class AlphaVantage:
             return None
 
         return df.head(n)["high"].max()
-
-# if __name__ == "__main__":
-#     av = AlphaVantage("demo")
-#     # print(av.lookup("AAPL", "2025-03-25"))
-#     # df = av._fetch_daily_series("MSFT")
-#     # print("Oldest date available:", df["date"].min())
-#     # print("Newest date available:", df["date"].max())
-
-
-# #     data1 = av.lookup("AAPL", "2025-03-26")
-#     print(av.lookup("MSFT", "2025-03-25"))
-#     print(av.min("MSFT", 5))
-#     print(av.max("MSFT", 5))
-#     data2 = av.min("AAPL", 5)
-#     print(data2)
-#     data3 = av.max("AAPL", 5)
-#     print(data3)

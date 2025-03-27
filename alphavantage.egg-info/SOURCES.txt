@@ -1,0 +1,10 @@
+README.md
+setup.py
+alphavantage/__init__.py
+alphavantage/myfunctions.py
+alphavantage.egg-info/PKG-INFO
+alphavantage.egg-info/SOURCES.txt
+alphavantage.egg-info/dependency_links.txt
+alphavantage.egg-info/requires.txt
+alphavantage.egg-info/top_level.txt
+tests/test_myfunctions.py
