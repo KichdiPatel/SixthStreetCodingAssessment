@@ -14,7 +14,7 @@ class AlphaVantage:
         """
         Internal helper to fetch TIME_SERIES_DAILY data from Alpha Vantage.
         """
-        api = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}.TRT&outputsize={"compact"}&apikey={self.api_key}"
+        api = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}.TRT&outputsize={"full"}&apikey={self.api_key}"
         try: 
             response = requests.get(api)
             response.raise_for_status()
@@ -58,7 +58,24 @@ class AlphaVantage:
         Returns:
             dict or None: The OHLCV data if found, otherwise None.
         """
-        pass
+
+        df = self._fetch_daily_series(symbol)
+        if df is None:
+            return None
+
+        found = df[df["date"] == pd.to_datetime(date)]
+        if found.empty:
+            print(f"No data found for {symbol} on {date}")
+            return None
+        else:
+            row = found.iloc[0]
+            return {
+                "open": float(row["open"]),
+                "high": float(row["high"]),
+                "low": float(row["low"]),
+                "close": float(row["close"]),
+                "volume": int(row["volume"])
+            }   
 
     def min(self, symbol: str, n: int):
         """
@@ -72,7 +89,13 @@ class AlphaVantage:
         Returns:
             float or None: The lowest low value, or None if not available.
         """
-        pass
+
+        df = self._fetch_daily_series(symbol)
+        if df is None or len(df) < n:
+            print(f"Not enough data to compute min for {symbol} over last {n} days.")
+            return None
+        else:
+            return df.head(n)["low"].min()
 
     def max(self, symbol: str, n: int):
         """
@@ -86,12 +109,22 @@ class AlphaVantage:
         Returns:
             float or None: The highest high value, or None if not available.
         """
-        pass
+        df = self._fetch_daily_series(symbol)
+        if df is None or len(df) < n:
+            print(f"Not enough data to compute max for {symbol} over last {n} days.")
+            return None
+
+        return df.head(n)["high"].max()
 
 if __name__ == "__main__":
     av = AlphaVantage("YOUR_API_KEY")
-    data = av._fetch_daily_series("AAPL")
-    print(data)
+    # data = av._fetch_daily_series("AAPL")
+    data1 = av.lookup("AAPL", "2025-03-26")
+    print(data1)
+    data2 = av.min("AAPL", 5)
+    print(data2)
+    data3 = av.max("AAPL", 5)
+    print(data3)
     # print()
     # print()
     # print(av.lookup("AAPL", "2021-01-04"))
